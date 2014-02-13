@@ -9,7 +9,7 @@ left_shift + left_arrow goes to the beginning of the game.
 
 BUG: If you go back after a capture is made, the stone that was captured will not reappear.
 
-Currently there is no support for SGF file branches/trees
+Currently there is no support for branches/trees
 
 ![ScreenShot](/mac_sgf_reader.png)
 
