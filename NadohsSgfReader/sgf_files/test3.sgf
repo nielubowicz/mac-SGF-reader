@@ -1,0 +1,288 @@
+(;
+
+GM[1]FF[4]VW[]AP[Many Faces of Go:11.0]
+
+SZ[19]
+
+HA[0]
+
+ST[0]
+
+PB[Ryu Shikun]
+
+PW[Takemiya Masaki]
+
+DT[2006-12-21]
+
+KM[6.5]
+
+RE[W+5.5]
+
+EV[55th Japanese Oza primary tournament]
+
+BR[9p]
+
+WR[9p];B[pd]
+
+C[This is the game from the 55th Japanese Oza primary tournament. \
+
+Black is Ryu Shikun, 9-dan. White is Takemiya Masaki, 9-dan]
+
+;W[dd];B[pp];W[dp];B[fq];W[cn]
+
+C[The move is typical for Lee Changho, but it's strange to see \
+
+Takemiya, using it]
+
+;B[dr];W[nc]
+
+;B[kd];W[qc]
+
+C[Another territorial-oriented move, which is not typical for Takemiya \
+
+Masaki, 9-dan]
+
+;B[pc];W[qd];B[pe];W[pb];B[ob];W[qb];B[oc];W[qf]
+
+;B[cq];W[ck]
+
+C[An urgent move, preventing the pincer]
+
+;B[fc];W[df]
+
+(;B[nq]
+
+C[Black may extend actively at X -]
+
+MA[qh]
+
+;W[qg]
+
+C[A very solid move, preventing the attack at X]
+
+MA[qh]
+
+
+
+(;B[nd]
+
+C[Black is playing solidly too, but this move is quite slow -]
+
+;W[ge]
+
+C[Now we may see, who is playing as White]
+
+
+
+(;B[cc]
+
+C[The best answer -]
+
+;W[dc];B[db]
+
+(;W[cd]
+
+C[The right direction -]
+
+;B[bb];W[bc];B[cb];W[gc]
+
+(;B[ec]
+
+C[A solid answer -]
+
+;W[jd]
+
+C[A good move, making Black overconcentrated on the right and defending \
+
+the cutting point at X]
+
+MA[fe]
+
+;B[kc]
+
+C[How about extending at X?]
+
+MA[ke]
+
+;W[ke];B[jc]
+
+C[The vital point, but it looks passive]
+
+;W[gk]
+
+C[A very good move, preventing the moyo-reducing plan at X]
+
+MA[dj]
+
+;B[ip]
+
+C[In my opinion, the opening is favorable for White]
+
+;W[qn];B[rp]
+
+;W[on]
+
+(;B[mn]
+
+C[The right answer -]
+
+;W[nl];B[ll];W[je]
+
+C[A very solid move. White's position is extra-thick!]
+
+;B[ik]
+
+C[This move is too soft. I would prefer to play the probe at X \
+
+first]
+
+MA[dk]
+
+;W[gm]
+
+C[White is happy to defend]
+
+;B[ii];W[gi]
+
+C[White's territory on the left is huge. He has a clear lead!]
+
+;B[hl]
+
+;W[gl];B[ql]
+
+C[The invasion is standard, but it's probably better to play at \
+
+X, putting more pressure on White's group]
+
+MA[pk]
+
+;W[nn];B[mo];W[qo];B[qp]
+
+(;W[pk]
+
+C[A careful answer -]
+
+;B[rm];W[op];B[oq];W[qj]
+
+C[It's enough!]
+
+;B[rn]
+
+C[Black's group is alive, but it's gote and he did not made any \
+
+territory here]
+
+;W[gp];B[gq];W[in]
+
+;B[pl];W[ol];B[jo];W[jn];B[lj];W[nj];B[hh];W[gh];B[bo];W[jl]
+
+;B[jk];W[kl];B[lh];W[lm];B[jg];W[hg];B[ig];W[hi];B[le];W[bd]
+
+C[A big move!]
+
+
+
+;B[gb];W[gd];B[hb];W[ih];B[lf];W[bn]
+
+C[The largest place on the board]
+
+;B[co];W[do];B[fp];W[hp]
+
+;B[hq];W[fo];B[rk]
+
+C[Too passive. It's better to attach at X]
+
+MA[rj]
+
+;W[ic];B[ib];W[ji];B[kk];W[rj]
+
+(;B[eo]
+
+C[Black missed a very important probe -]
+
+;W[ep];B[go];W[en];B[ho];W[cp];B[bp];W[ko];B[kp]
+
+;W[oa];B[na];W[pa];B[nb];W[sk]
+
+C[Now the weakness at X has no meaning at all. If we count the \
+
+balance, we may see that White is leading about 5 points.]
+
+MA[qe]
+
+;B[nh];W[og];B[oh];W[ng];B[mh]
+
+;W[ph];B[mm];W[ml];B[lk];W[gn];B[oj];W[oi];B[ni];W[pi];B[qe]
+
+;W[re];B[hf];W[gf];B[if];W[ie];B[ro];W[np];B[mp];W[mj];B[sl]
+
+;W[sj];B[il];W[hn];B[kn];W[km];B[ln];W[jm];B[mk];W[nk];B[ij]
+
+;W[jh];B[kg];W[bq];B[br];W[ao];B[aq];W[ab];B[fd];W[fe];B[ed]
+
+;W[ee];B[pf];W[pg];B[of];W[nf];B[ne];W[qk];B[rl];W[io];B[jp]
+
+;W[eq];B[er];W[ki];B[li];W[mf];B[me];W[ba];B[hj];W[gj];B[eb]
+
+;W[ac];B[ca];W[aa])
+
+(;B[qe];W[re];B[rd]
+
+C[I would prefer to cut here and ask]
+
+))
+
+(;W[rm];B[pj]
+
+C[It would be dangerous for White to fight like this]
+
+))
+
+(;B[bo];W[mp];B[np];W[mn]
+
+C[White would reduce the lower side a lot]
+
+))
+
+(;B[gb];W[fb];B[eb];W[fd];B[fa]
+
+C[This was White's plan]
+
+))
+
+(;W[eb];B[bb];W[da];B[cb];W[ec];B[bf]
+
+C[It's a joseki too, but now the position of the marked stone would \
+
+be strange]
+
+TR[ge]
+
+))
+
+(;B[hd];W[he];B[id]
+
+C[It would be passive for Black to defend like this]
+
+))
+
+(;B[db];W[cc];B[hd]
+
+C[Is it better to defend like this?]
+
+))
+
+(;B[qh]
+
+(;W[qg];B[ph]
+
+C[His construction would be ideal]
+
+)
+
+(;W[pf];B[of];W[og];B[nf];W[ph];B[pi]
+
+C[This is another possibility]
+
+)))
+

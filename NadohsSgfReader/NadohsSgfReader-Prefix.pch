@@ -1,0 +1,11 @@
+//
+// Prefix header for all source files of the 'NadohsSgfReader' target in the 'NadohsSgfReader' project
+//
+
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
+#define RAW_SCREEN_SIZE  [[NSScreen mainScreen] frame].size
+#define DOWN_SIZE 70
+#define SCREEN_SIZE  CGSizeMake(RAW_SCREEN_SIZE.width-DOWN_SIZE,RAW_SCREEN_SIZE.height-DOWN_SIZE)

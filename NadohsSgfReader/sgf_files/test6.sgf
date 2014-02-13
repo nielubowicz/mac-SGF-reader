@@ -1,0 +1,302 @@
+(;GM[1]FF[4]CA[UTF-8]AP[CGoban:3]ST[2]
+
+RU[Japanese]SZ[19]KM[6.50]
+
+PW[Kang Hun]PB[Cho Daehyeon]WR[9p]BR[9p]DT[2007-09-14]EV[9th Korean Korean Maxim Cup]RO[round 1]SO[Go4Go.net]RE[B+Resign]
+
+;B[pd]C[This is the game from the 9th Korean Korean Maxim Cup. Black is Cho Daehyeon, 9-dan. White is Kang Hun, 9-dan]
+
+;W[dp]
+
+;B[pq]
+
+;W[dd]
+
+;B[fq]
+
+;W[cn]
+
+;B[qk]C[The opening is typical for Cho Daehyeon, 9-dan. We call him "Korean Takemiya"]
+
+(;W[eq]C[A solid move, but it looks slow -]
+
+;B[kp]LB[fp:A]C[A good decision. It would be heavy for Black to extend at A]
+
+;W[fp]
+
+;B[jd]C[Black's opening looks successful]
+
+;W[qf]C[White can also invade at san-san]
+
+;B[qe]
+
+;W[pf]
+
+;B[nd]
+
+;W[qi]
+
+;B[oj]
+
+(;W[oi]LB[oh:A]C[In my opinion, it's better to defend at A. Black's shape would be less impressive -]
+
+;B[ni]
+
+;W[oh]
+
+;B[nj]C[Now Black is extremely thick]
+
+;W[mg]C[Is it necessary to jump here?]
+
+;B[qj]
+
+;W[ri]
+
+;B[fc]
+
+(;W[cf]C[White may think about tennuki -]
+
+;B[op]C[Now Black's moyo is very deep]
+
+;W[iq]LB[ip:A]C[Is it better to make the high extension at A?]
+
+;B[io]
+
+(;W[kq]C[A rude move, which makes Black stronger -]
+
+;B[lq]
+
+;W[jq]
+
+;B[lp]C[Now Black is very thick and the invasion is not possible anymore]
+
+;W[db]LB[qc:A]C[It's probably better to invade at A first]
+
+;B[re]C[A huge move]
+
+;W[hc]
+
+(;B[jc]C[The right answer -]
+
+;W[he]
+
+;B[cq]
+
+;W[dr]
+
+;B[gp]
+
+;W[fr]
+
+;B[dg]LB[hb:A]C[A good move. Black is keeping the connection at A in reserve]
+
+;W[df]LB[cg:A]C[I would prefer to push at A]
+
+;B[fg]
+
+;W[hg]
+
+;B[fe]C[Black is happy to connect]
+
+;W[jf]
+
+;B[fi]
+
+;W[hi]
+
+;B[cm]C[The standard tesuji]
+
+;W[dm]LB[ck:A]C[White may think about the attack at A. It will be sharp!]
+
+;B[cl]
+
+;W[dn]
+
+;B[ci]C[The result is comfortable for Black. His group is stable now]
+
+;W[kl]C[It's not enough for White]
+
+;B[lm]
+
+;W[km]
+
+;B[ln]C[Black is happy to defend]
+
+;W[sl]
+
+;B[rl]
+
+;W[ll]
+
+;B[ml]
+
+;W[mk]
+
+;B[nl]
+
+;W[sk]
+
+;B[sm]C[Black is thick, so he can block here]
+
+(;W[rj]C[White has no choice -]
+
+;B[rk]
+
+;W[sj]
+
+;B[rm]C[Black's corner is huge. His lead is clear]
+
+;W[dl]
+
+;B[dk]
+
+;W[ek]
+
+;B[dj]
+
+;W[bh]
+
+;B[fk]
+
+;W[kb]C[A nice tesuji]
+
+(;B[lc]C[A careful answer -]
+
+;W[jb]
+
+;B[lb]C[Any way, it's enough for Black]
+
+;W[oe]
+
+;B[od]
+
+;W[rf]LB[li:A]C[The block at A is bigger]
+
+;B[li]C[The largest place. Now Black has a clear 13-15 points lead on the board. This is the last note.]
+
+;W[se]
+
+;B[sd]
+
+;W[sf]
+
+;B[rc]
+
+;W[el]
+
+;B[ef]
+
+;W[cg]
+
+;B[ch]
+
+;W[fb]
+
+;B[bi]
+
+;W[bm]
+
+;B[bl]
+
+;W[bn]
+
+;B[im]
+
+;W[il]
+
+;B[hl]
+
+;W[ik]
+
+;B[hk]
+
+;W[hj]
+
+;B[kj])
+
+(;B[jb]
+
+;W[ld]C[Black must be afraid of this invasion]))
+
+(;W[rm]
+
+;B[sj]
+
+;W[sn]
+
+;B[rk]
+
+;W[qp]
+
+;B[qq]
+
+;W[rq]
+
+;B[rr]
+
+;W[ro]
+
+;B[sp]
+
+;W[sq]
+
+;B[qn]C[He cannot live inside.
+
+It was probably better to play the monkey jump before reducing the moyo at L8, so this cut would be possible]))
+
+(;B[hd]
+
+;W[id]
+
+;B[ie]
+
+;W[ic]
+
+;B[gd]
+
+;W[jc]
+
+;B[kd]
+
+;W[lc]C[It would be difficult for Black to use this wall]))
+
+(;W[qp]
+
+;B[qq]
+
+;W[rl]C[White may try something here]))
+
+(;W[po]C[It looks urgent for him to invade the moyo]))
+
+(;W[oh]
+
+;B[qj]
+
+;W[ri]
+
+;B[fc]
+
+;W[cf]
+
+;B[op]C[It would be easier for White to reduce this moyo]))
+
+(;W[nc]
+
+;B[pf]
+
+;W[jd]
+
+;B[jp]C[This is the most simple way])
+
+(;W[jp]
+
+;B[lp]
+
+;W[eq]
+
+;B[fp]
+
+;W[hp]C[White may also think about the pincer]))
+
+
+
