@@ -11,4 +11,6 @@ BUG: If you go back after a capture is made, the stone that was captured will no
 
 There is not currently support for SGF file branches
 
+![ScreenShot](https://www.dropbox.com/s/yc7heo3u724yjzi/mac_sgf_reader.png)
+
 mac SGF reader
