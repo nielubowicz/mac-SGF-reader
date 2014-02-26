@@ -18,7 +18,7 @@
 @implementation goAppDelegate{
     
     BoardMechanic *captureMaker;
-
+    
     SGFParser *goParser;
     
     NSWindow *splashWindow;
@@ -28,7 +28,9 @@
     int indexClick;
     NSImageView *board;
     NSImage *grid;
-    NSMutableArray * _myPlayedMoves;
+    NSMutableArray *_myPlayedMoves;
+    
+    NSMutableDictionary *removalHistory;
     
 }
 
@@ -38,7 +40,15 @@
 -(NSArray*)playedMoves{
     return [NSArray arrayWithArray:_myPlayedMoves];
 }
-
+-(void)addToFromPMLocation:(int)loc {
+    
+    for (MovePlayed *move in self.playedMoves){
+        if   ([move boardLocation] == loc){
+            [_myPlayedMoves addObject:move];
+        }
+    }
+    
+}
 
 -(void)removeFromPMLocation:(int)loc {
     
@@ -50,6 +60,34 @@
     
 }
 
+-(void)reviveStones{
+    NSDictionary *revive = [NSDictionary dictionaryWithDictionary:removalHistory];
+    int totalRevSets = (int)revive.count;
+    for (int i = totalRevSets; i>indexClick; i--) {
+        NSArray *didRemove = [revive  objectForKey:[[NSNumber numberWithInt:i] stringValue]];
+        for (MovePlayed*move in didRemove){
+            NSImageView *viewItem = [[self.window contentView] viewWithTag:move.boardLocation];
+            NSImage     *newImage;
+            if ([move isBlack]) {
+                NSLog(@"black");
+                newImage = [NSImage imageNamed:@"black.png"];
+            }
+            else{
+                NSLog(@"white");
+                newImage = [NSImage imageNamed:@"white.png"];
+            }
+            
+            newImage =  [self scaleImage: newImage
+                                 toFrame: viewItem.frame];
+            
+            [viewItem setImage:newImage];
+            
+            [self addToFromPMLocation:move.boardLocation];
+            [removalHistory removeObjectForKey:[[NSNumber numberWithInt:i] stringValue]];
+        }
+    }
+}
+
 -(void)removeStones:(NSSet*)toRemove{
     
     if (toRemove.count>0) {
@@ -57,24 +95,25 @@
     }
     
     for (MovePlayed*move in toRemove){
-
+        
         NSImageView *viewItem = [[self.window contentView] viewWithTag:move.boardLocation];
         
         NSImage     *newImage =  [self scaleImage:[NSImage imageNamed:@"empty2.png"]
                                           toFrame: viewItem.frame];
-    
+        
         [viewItem setImage:newImage];
         [self removeFromPMLocation:move.boardLocation];
     }
-    
+    //    [removalHistory insertObject:toRemove atIndex:indexClick];
 }
 
 -(void)checkCapture:(MovePlayed*)myMove{
     if (!captureMaker){
         captureMaker= [[BoardMechanic alloc]init];
     }
-    
-    [self removeStones:[captureMaker checkForCapture:myMove inside:self.playedMoves]];
+    NSSet *toRemove = [captureMaker checkForCapture:myMove inside:self.playedMoves];
+    [self removeStones:toRemove];
+    [removalHistory setObject:toRemove forKey:[[NSNumber numberWithInt:indexClick] stringValue]];
 }
 
 
@@ -105,7 +144,7 @@
 
 #pragma mark - arrow nav Button actions
 -(void)startButtonClicked{
-
+    
     while (indexClick>2) {
         [self leftButtonClicked];
     }
@@ -123,7 +162,7 @@
     MovePlayed *myMovePlay = [[MovePlayed alloc]init];
     
     int index =  [[[moves objectAtIndex:i] objectAtIndex:0] intValue];
-    NSLog(@"%i IS INDEX",index  );
+    NSLog(@"%i IS INDEX",index );
     
     frame = [[[self.window contentView] viewWithTag:index] frame];
     
@@ -148,6 +187,7 @@
     [[[self.window contentView] viewWithTag:index] setImage:newImage];
     
     [myMovePlay setBoardLocation:index];
+    [self reviveStones];
     return myMovePlay;
 }
 
@@ -171,9 +211,9 @@
 
 -(void)leftButtonClicked{
     
-        if ((indexClick-1) >1) {
-            indexClick--;
-        }
+    if ((indexClick-1) >1) {
+        indexClick--;
+    }
     MovePlayed *myMovePlay = [self changeMoveIndexed:indexClick leftDirection:YES];
     
     //REMOVE FROM MOVES PLAYED
@@ -207,19 +247,19 @@
 
 - (void)windowDidExitFullScreen:(NSNotification *)notification{
     NSLog(@"exit fullscreen");
-       // [self resizeGoban];
+    // [self resizeGoban];
     
 }
 - (void)windowDidEnterFullScreen:(NSNotification *)notification{
     NSLog(@"fullscreen");
-       // [self resizeGoban];
+    // [self resizeGoban];
 }
 
 #pragma mark - Sizing
 -(CGPoint)centerForView:(NSView*)myView{
     
-     return CGPointMake((myView.frame.origin.x + (myView.frame.size.width / 2)),
-                (myView.frame.origin.y + (myView.frame.size.height / 2)));
+    return CGPointMake((myView.frame.origin.x + (myView.frame.size.width / 2)),
+                       (myView.frame.origin.y + (myView.frame.size.height / 2)));
 }
 
 -(CGPoint)iSize //RETURNS CURRENT SCREEN DIMENSIONS
@@ -330,7 +370,7 @@
 
 
 -(void)addDrawBoard{
-
+    
     float topBotMargins = 120;
     float leftRightMargins = 160;
     float blockSize = [self iSize].x;
@@ -348,7 +388,7 @@
     [board setImage:
      [self scaleImage: grid toFrame:frame]];
     [[self.window contentView] addSubview:board];
-
+    
 }
 
 
@@ -378,9 +418,9 @@
 }
 
 -(void)startSGFParser{
-     goParser = [[SGFParser alloc]init];
+    goParser = [[SGFParser alloc]init];
     [goParser sgfFileToString:@"test5.sgf"];
-     moves = [goParser buildMovesList];
+    moves = [goParser buildMovesList];
 }
 
 
@@ -391,6 +431,7 @@
     indexClick=1;
     self.window.delegate=self;
     _myPlayedMoves = [[NSMutableArray alloc]init];
+    removalHistory = [[NSMutableDictionary alloc]init];
     [self addDrawBoard];
     [self buildGoban];
     [self startSGFParser];
