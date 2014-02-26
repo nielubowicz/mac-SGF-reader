@@ -7,30 +7,27 @@
 //
 
 #import "goAppDelegate.h"
-#import "BoardView.h"
 #import <AppKit/AppKit.h>
-#import "MovePlayed.h"
-#import "BoardMechanic.h"
-#import "SGFParser.h"
+
 
 
 
 @implementation goAppDelegate{
     
-    BoardMechanic *captureMaker;
-    
-    SGFParser *goParser;
-    
-    NSWindow *splashWindow;
-    
-    NSArray *moves;
-    
-    int indexClick;
-    NSImageView *board;
-    NSImage *grid;
-    NSMutableArray *_myPlayedMoves;
-    
-    NSMutableDictionary *removalHistory;
+//    BoardMechanic *captureMaker;
+//    
+//    SGFParser *goParser;
+//    
+//    NSWindow *splashWindow;
+//    
+//    NSArray *moves;
+//    
+//    int indexClick;
+//    NSImageView *board;
+//    NSImage *grid;
+//    NSMutableArray *_myPlayedMoves;
+//    
+//    NSMutableDictionary *removalHistory;
     
 }
 
@@ -40,14 +37,21 @@
 -(NSArray*)playedMoves{
     return [NSArray arrayWithArray:_myPlayedMoves];
 }
+
 -(void)addToFromPMLocation:(int)loc {
-    
+    BOOL exists = NO;
     for (MovePlayed *move in self.playedMoves){
         if   ([move boardLocation] == loc){
             [_myPlayedMoves addObject:move];
+            exists=YES;
         }
     }
-    
+    if  (!exists){
+        MovePlayed *newMove = [[MovePlayed alloc]init];
+        [newMove setBoardLocation:loc];
+        [_myPlayedMoves addObject:newMove];
+    }
+
 }
 
 -(void)removeFromPMLocation:(int)loc {
@@ -61,9 +65,9 @@
 }
 
 -(void)reviveStones{
-    NSDictionary *revive = [NSDictionary dictionaryWithDictionary:removalHistory];
+    NSDictionary *revive = [NSDictionary dictionaryWithDictionary:_removalHistory];
     int totalRevSets = (int)revive.count;
-    for (int i = totalRevSets; i>indexClick; i--) {
+    for (int i = totalRevSets; i>_indexClick; i--) {
         NSArray *didRemove = [revive  objectForKey:[[NSNumber numberWithInt:i] stringValue]];
         for (MovePlayed*move in didRemove){
             NSImageView *viewItem = [[self.window contentView] viewWithTag:move.boardLocation];
@@ -83,7 +87,7 @@
             [viewItem setImage:newImage];
             
             [self addToFromPMLocation:move.boardLocation];
-            [removalHistory removeObjectForKey:[[NSNumber numberWithInt:i] stringValue]];
+            [_removalHistory removeObjectForKey:[[NSNumber numberWithInt:i] stringValue]];
         }
     }
 }
@@ -108,24 +112,24 @@
 }
 
 -(void)checkCapture:(MovePlayed*)myMove{
-    if (!captureMaker){
-        captureMaker= [[BoardMechanic alloc]init];
+    if (!_captureMaker){
+        _captureMaker= [[BoardMechanic alloc]init];
     }
-    NSSet *toRemove = [captureMaker checkForCapture:myMove inside:self.playedMoves];
+    NSSet *toRemove = [_captureMaker checkForCapture:myMove inside:self.playedMoves];
     [self removeStones:toRemove];
-    [removalHistory setObject:toRemove forKey:[[NSNumber numberWithInt:indexClick] stringValue]];
+    [_removalHistory setObject:toRemove forKey:[[NSNumber numberWithInt:_indexClick] stringValue]];
 }
 
 
 -(void)showBoard{
-    for (int i=1; i<moves.count;i++){
+    for (int i=1; i<_moves.count;i++){
         NSImage *newImage;
         CGRect frame;
-        int index =  [[[moves objectAtIndex:i] objectAtIndex:0] intValue];
+        int index =  [[[_moves objectAtIndex:i] objectAtIndex:0] intValue];
         NSLog(@"%i IS INDEX",index  );
         frame = [[[self.window contentView] viewWithTag:index] frame];
         
-        NSString *testColor = [(NSString*)[[moves objectAtIndex:i] objectAtIndex:1] uppercaseString];
+        NSString *testColor = [(NSString*)[[_moves objectAtIndex:i] objectAtIndex:1] uppercaseString];
         
         if ([testColor isEqualToString:@"B"]) {
             NSLog(@"black");
@@ -145,7 +149,7 @@
 #pragma mark - arrow nav Button actions
 -(void)startButtonClicked{
     
-    while (indexClick>2) {
+    while (_indexClick>2) {
         [self leftButtonClicked];
     }
     
@@ -156,17 +160,17 @@
 }
 
 -(MovePlayed*)changeMoveIndexed:(int)indexClicked leftDirection:(BOOL)backward{
-    int i = indexClick;
+    int i = _indexClick;
     NSImage *newImage;
     CGRect frame;
     MovePlayed *myMovePlay = [[MovePlayed alloc]init];
     
-    int index =  [[[moves objectAtIndex:i] objectAtIndex:0] intValue];
+    int index =  [[[_moves objectAtIndex:i] objectAtIndex:0] intValue];
     NSLog(@"%i IS INDEX",index );
     
     frame = [[[self.window contentView] viewWithTag:index] frame];
     
-    NSString *testColor = [(NSString*)[[moves objectAtIndex:i] objectAtIndex:1] uppercaseString];
+    NSString *testColor = [(NSString*)[[_moves objectAtIndex:i] objectAtIndex:1] uppercaseString];
     
     if ([testColor isEqualToString:@"B"]) {
         NSLog(@"black");
@@ -194,13 +198,13 @@
 -(void)rightButtonClicked
 {
     
-    MovePlayed *myMovePlay = [self changeMoveIndexed:indexClick leftDirection:NO];
+    MovePlayed *myMovePlay = [self changeMoveIndexed:_indexClick leftDirection:NO];
     
     //ADD TO MOVES PLAYED
     [_myPlayedMoves addObject:myMovePlay];
     
-    if ((indexClick+1) <moves.count) {
-        indexClick++;
+    if ((_indexClick+1) <_moves.count) {
+        _indexClick++;
     }
     
     [self checkCapture:myMovePlay];
@@ -211,10 +215,10 @@
 
 -(void)leftButtonClicked{
     
-    if ((indexClick-1) >1) {
-        indexClick--;
+    if ((_indexClick-1) >1) {
+        _indexClick--;
     }
-    MovePlayed *myMovePlay = [self changeMoveIndexed:indexClick leftDirection:YES];
+    MovePlayed *myMovePlay = [self changeMoveIndexed:_indexClick leftDirection:YES];
     
     //REMOVE FROM MOVES PLAYED
     int q =0;
@@ -237,7 +241,7 @@
     CGRect newFrame;
     newFrame.size = newSize;
     newFrame.origin = upLeft;
-    [board setFrame:newFrame];
+    [_board setFrame:newFrame];
 }
 
 
@@ -302,7 +306,7 @@
     int y =topBotMargins/2;
     
     //build background of board
-    NSImageView *backdrop = [[NSImageView alloc]initWithFrame:board.frame];
+    NSImageView *backdrop = [[NSImageView alloc]initWithFrame:_board.frame];
     [backdrop setTag:1200];
     [backdrop setImage:[self scaleImage:[NSImage imageNamed:@"woodback.jpg"] toFrame:backdrop.frame]];
     [backdrop setAlphaValue:0.3];
@@ -380,14 +384,14 @@
     float height = ([self iSize].y -topBotMargins);///dimensions;
     float width = ([self iSize].y -leftRightMargins);///dimensions;
     
-    board = [[NSImageView alloc]init];
+    _board = [[NSImageView alloc]init];
     CGRect frame =CGRectMake(leftRightMargins/2.0f+(16), topBotMargins*.5f+(17.0f), width, height  );
     
-    [board setFrame:frame];
-    grid = [NSImage imageNamed:@"19x19grid.png"];
-    [board setImage:
-     [self scaleImage: grid toFrame:frame]];
-    [[self.window contentView] addSubview:board];
+    [_board setFrame:frame];
+     _grid = [NSImage imageNamed:@"19x19grid.png"];
+    [_board setImage:
+    [self scaleImage: _grid toFrame:frame]];
+    [[self.window contentView] addSubview:_board];
     
 }
 
@@ -418,9 +422,9 @@
 }
 
 -(void)startSGFParser{
-    goParser = [[SGFParser alloc]init];
-    [goParser sgfFileToString:@"test5.sgf"];
-    moves = [goParser buildMovesList];
+    _goParser = [[SGFParser alloc]init];
+    [_goParser sgfFileToString:@"test5.sgf"];
+    _moves = [_goParser buildMovesList];
 }
 
 
@@ -428,10 +432,10 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    indexClick=1;
+    _indexClick=1;
     self.window.delegate=self;
     _myPlayedMoves = [[NSMutableArray alloc]init];
-    removalHistory = [[NSMutableDictionary alloc]init];
+    _removalHistory = [[NSMutableDictionary alloc]init];
     [self addDrawBoard];
     [self buildGoban];
     [self startSGFParser];
