@@ -7,7 +7,7 @@ You can use left and right keys to navigate game.
 
 left_shift + left_arrow goes to the beginning of the game.
 
-BUG: If you go back after a capture is made, the stone that was captured will not reappear.
+(**FIXED**)BUG: If you go back after a capture is made, the stone that was captured will not reappear.
 
 Currently there is no support for branches/trees
 
