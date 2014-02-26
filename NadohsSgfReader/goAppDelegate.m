@@ -10,35 +10,20 @@
 #import <AppKit/AppKit.h>
 
 
+@implementation goAppDelegate
 
 
-@implementation goAppDelegate{
-    
-//    BoardMechanic *captureMaker;
-//    
-//    SGFParser *goParser;
-//    
-//    NSWindow *splashWindow;
-//    
-//    NSArray *moves;
-//    
-//    int indexClick;
-//    NSImageView *board;
-//    NSImage *grid;
-//    NSMutableArray *_myPlayedMoves;
-//    
-//    NSMutableDictionary *removalHistory;
-    
-}
-
-
-#pragma mark -
+#pragma mark - setters/getters
 
 -(NSArray*)playedMoves{
     return [NSArray arrayWithArray:_myPlayedMoves];
 }
 
--(void)addToFromPMLocation:(int)loc {
+
+#pragma mark - adding/removing stones
+
+-(void)addToFromPM:(MovePlayed*)move {
+    int loc = move.boardLocation;
     BOOL exists = NO;
     for (MovePlayed *move in self.playedMoves){
         if   ([move boardLocation] == loc){
@@ -49,7 +34,9 @@
     if  (!exists){
         MovePlayed *newMove = [[MovePlayed alloc]init];
         [newMove setBoardLocation:loc];
+        [newMove setIsBlack:move.isBlack];
         [_myPlayedMoves addObject:newMove];
+        
     }
 
 }
@@ -86,7 +73,7 @@
             
             [viewItem setImage:newImage];
             
-            [self addToFromPMLocation:move.boardLocation];
+            [self addToFromPM:move];
             [_removalHistory removeObjectForKey:[[NSNumber numberWithInt:i] stringValue]];
         }
     }
@@ -104,11 +91,10 @@
         
         NSImage     *newImage =  [self scaleImage:[NSImage imageNamed:@"empty2.png"]
                                           toFrame: viewItem.frame];
-        
         [viewItem setImage:newImage];
+        
         [self removeFromPMLocation:move.boardLocation];
     }
-    //    [removalHistory insertObject:toRemove atIndex:indexClick];
 }
 
 -(void)checkCapture:(MovePlayed*)myMove{
@@ -195,8 +181,13 @@
     return myMovePlay;
 }
 
--(void)rightButtonClicked
-{
+-(void)rightButtonClicked{
+    
+    if(_processingMove){
+        return;
+    }
+    
+    _processingMove = YES;
     
     MovePlayed *myMovePlay = [self changeMoveIndexed:_indexClick leftDirection:NO];
     
@@ -210,10 +201,18 @@
     [self checkCapture:myMovePlay];
     
     [self.currentCoordinateText setStringValue:NSStringFromPoint( myMovePlay.position)];
+    
+    _processingMove = NO;
 }
 
 
 -(void)leftButtonClicked{
+    
+    if(_processingMove){
+        return;
+    }
+    
+    _processingMove = YES;
     
     if ((_indexClick-1) >1) {
         _indexClick--;
@@ -228,6 +227,8 @@
         }
         q++;
     }
+    
+    _processingMove = NO;
 }
 
 
@@ -422,34 +423,25 @@
 }
 
 -(void)startSGFParser{
-    _goParser = [[SGFParser alloc]init];
+     _goParser = [[SGFParser alloc]init];
     [_goParser sgfFileToString:@"test5.sgf"];
-    _moves = [_goParser buildMovesList];
+     _moves = [_goParser buildMovesList];
 }
 
 
 #pragma mark - It All Starts Here
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+
     _indexClick=1;
     self.window.delegate=self;
     _myPlayedMoves = [[NSMutableArray alloc]init];
     _removalHistory = [[NSMutableDictionary alloc]init];
+    
     [self addDrawBoard];
     [self buildGoban];
     [self startSGFParser];
     [self setupKeyInputBlocks];
-    
-    float qw = 100;
-    int i=0;
-    while (i<10) {
-        qw =qw*1.05f;
-        i++;
-    }
-    NSLog(@"from 100 to %f",qw);
-    
-    //[self showBoard];
 }
 
 @end

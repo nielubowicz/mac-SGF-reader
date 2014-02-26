@@ -38,6 +38,8 @@
 @property (nonatomic, retain)NSMutableArray *myPlayedMoves;
 @property (nonatomic, retain)NSMutableDictionary *removalHistory;
 
+@property (nonatomic, assign) BOOL processingMove;
+
 
 #pragma mark - keyPressActions
 -(void)rightButtonClicked;
