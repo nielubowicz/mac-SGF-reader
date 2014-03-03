@@ -22,7 +22,7 @@
 
 #pragma mark - adding/removing stones
 
--(void)addToFromPM:(MovePlayed*)move {
+-(void)addToFromPlayedMove:(MovePlayed*)move {
     int loc = move.boardLocation;
     BOOL exists = NO;
     for (MovePlayed *move in self.playedMoves){
@@ -32,7 +32,7 @@
         }
     }
     if  (!exists){
-        MovePlayed *newMove = [[MovePlayed alloc]init];
+        MovePlayed *newMove = [[[MovePlayed alloc]init] autorelease];
         [newMove setBoardLocation:loc];
         [newMove setIsBlack:move.isBlack];
         [_myPlayedMoves addObject:newMove];
@@ -41,7 +41,7 @@
 
 }
 
--(void)removeFromPMLocation:(int)loc {
+-(void)removeFromPlayedMoveLocation:(int)loc {
     
     for (MovePlayed *move in self.playedMoves){
         if   ([move boardLocation] == loc){
@@ -73,7 +73,7 @@
             
             [viewItem setImage:newImage];
             
-            [self addToFromPM:move];
+            [self addToFromPlayedMove:move];
             [_removalHistory removeObjectForKey:[[NSNumber numberWithInt:i] stringValue]];
         }
     }
@@ -93,7 +93,7 @@
                                           toFrame: viewItem.frame];
         [viewItem setImage:newImage];
         
-        [self removeFromPMLocation:move.boardLocation];
+        [self removeFromPlayedMoveLocation:move.boardLocation];
     }
 }
 
@@ -149,7 +149,7 @@
     int i = _indexClick;
     NSImage *newImage;
     CGRect frame;
-    MovePlayed *myMovePlay = [[MovePlayed alloc]init];
+    MovePlayed *myMovePlay = [[[MovePlayed alloc]init] autorelase];
     
     int index =  [[[_moves objectAtIndex:i] objectAtIndex:0] intValue];
     NSLog(@"%i IS INDEX",index );
