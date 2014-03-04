@@ -10,9 +10,11 @@
 
 @interface SGFParser : NSObject
 
+@property (nonatomic, retain) NSURL *sgfFilePath;
 @property (nonatomic, retain) NSString *masterSGFString;
 
 -(void)sgfFileToString:(NSString*)sgfName;
+-(void)sgfFromURL:(NSURL*)fullPath;
 -(void)parseSgfFile;
 -(NSArray*)buildMovesList;
 @end

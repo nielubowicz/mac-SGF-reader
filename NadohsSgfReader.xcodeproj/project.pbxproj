@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		522DAA5418BEB263002327BB /* BoardView+OpenSGF.m in Sources */ = {isa = PBXBuildFile; fileRef = 522DAA5318BEB263002327BB /* BoardView+OpenSGF.m */; };
 		52AC1F44189ED30900E8276E /* 19x19grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 52AC1F3F189ED30900E8276E /* 19x19grid.png */; };
 		52AC1F45189ED30900E8276E /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = 52AC1F40189ED30900E8276E /* black.png */; };
 		52AC1F46189ED30900E8276E /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 52AC1F41189ED30900E8276E /* empty.png */; };
@@ -31,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		522DAA5218BEB263002327BB /* BoardView+OpenSGF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BoardView+OpenSGF.h"; path = "NadohsSgfReader/BoardView+OpenSGF.h"; sourceTree = "<group>"; };
+		522DAA5318BEB263002327BB /* BoardView+OpenSGF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "BoardView+OpenSGF.m"; path = "NadohsSgfReader/BoardView+OpenSGF.m"; sourceTree = "<group>"; };
 		52AC1F3F189ED30900E8276E /* 19x19grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 19x19grid.png; sourceTree = "<group>"; };
 		52AC1F40189ED30900E8276E /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black.png; sourceTree = "<group>"; };
 		52AC1F41189ED30900E8276E /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty.png; sourceTree = "<group>"; };
@@ -92,6 +95,8 @@
 		52B3AE7917BD376B00ECE58D = {
 			isa = PBXGroup;
 			children = (
+				522DAA5218BEB263002327BB /* BoardView+OpenSGF.h */,
+				522DAA5318BEB263002327BB /* BoardView+OpenSGF.m */,
 				52B3AE8B17BD376B00ECE58D /* NadohsSgfReader */,
 				52B3AE8417BD376B00ECE58D /* Frameworks */,
 				52B3AE8317BD376B00ECE58D /* Products */,
@@ -247,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				522DAA5418BEB263002327BB /* BoardView+OpenSGF.m in Sources */,
 				52B3AE9217BD376B00ECE58D /* main.m in Sources */,
 				52B3AE9917BD376B00ECE58D /* goAppDelegate.m in Sources */,
 				52AD3AC117C3BF2700E92C6A /* BoardMechanic.m in Sources */,

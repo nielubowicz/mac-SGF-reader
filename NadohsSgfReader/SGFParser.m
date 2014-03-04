@@ -120,8 +120,24 @@
 
 
 //test5.sgf
--(void)sgfFileToString:(NSString*)sgfName{
+
+-(void)sgfFromURL:(NSURL*)fullPath{
     NSError *error;
+    
+    self.masterSGFString=[NSString stringWithContentsOfFile:[fullPath path]
+                                                   encoding:NSASCIIStringEncoding
+                                                      error:&error];
+//    self.masterSGFString = [self.masterSGFString substringFromIndex:8];
+    if (error) {
+        NSLog(@"INPUT ERROR %@ \n ERROR : %@ \n PATH : %@", error.domain, error,[fullPath absoluteString]);
+    }
+    
+    NSLog(@"%@",self.masterSGFString);
+    [self parseSgfFile];
+}
+
+-(void)sgfFileToString:(NSString*)sgfName{
+
     NSArray *docDirs = NSSearchPathForDirectoriesInDomains(
                                                            NSDocumentDirectory,
                                                            NSUserDomainMask, YES);
@@ -129,14 +145,9 @@
     
     doc = [doc stringByAppendingPathComponent:@"sgf_files"];
     
-    self.masterSGFString=[NSString stringWithContentsOfFile:
-                     [NSString stringWithFormat:@"%@/%@", doc,sgfName] encoding:NSASCIIStringEncoding error:&error];
-    if (error) {
-        NSLog(@"INPUT ERROR %@ \n ERROR : %@ \n PATH : %@", error.domain, error,[NSString stringWithFormat:@"%@/test6.sgf", doc]);
-    }
+    NSString *fullPath = [NSString stringWithFormat:@"%@/%@", doc,sgfName];
     
-    NSLog(@"%@",self.masterSGFString);
-    [self parseSgfFile];
+
 }
 
 

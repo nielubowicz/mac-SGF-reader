@@ -7,19 +7,25 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SGFParser.h"
 
-@protocol keyboardButtonDelegate <NSObject>
+
+@protocol boardViewDelegate <NSObject>
 -(void)rightButtonClicked;
 -(void)startButtonClicked;
 -(void)leftButtonClicked;
 -(void)endButtonClicked;
+@property (nonatomic, retain)SGFParser *goParser;
 @end
 
 @interface BoardView : NSView{
 
 }
 
-@property (nonatomic, assign) id<keyboardButtonDelegate> keyDelegate;
+@property (nonatomic, assign) id<boardViewDelegate> parent;
+@property (nonatomic, retain) NSOpenPanel* panel;
+
+-(NSURL*)promptOpenFile;
 
 
 @end

@@ -1,4 +1,4 @@
-//
+   //
 //  goAppDelegate.m
 //  NadohsSgfReader
 //
@@ -135,7 +135,7 @@
 #pragma mark - arrow nav Button actions
 -(void)startButtonClicked{
     
-    while (_indexClick>2) {
+    while (_indexClick>1) {
         [self leftButtonClicked];
     }
     
@@ -214,7 +214,7 @@
     
     _processingMove = YES;
     
-    if ((_indexClick-1) >1) {
+    if ((_indexClick-1) >0) {
         _indexClick--;
     }
     MovePlayed *myMovePlay = [self changeMoveIndexed:_indexClick leftDirection:YES];
@@ -442,6 +442,36 @@
     [self buildGoban];
     [self startSGFParser];
     [self setupKeyInputBlocks];
+    
+    _myBoardView = [[[NSApplication sharedApplication] mainWindow] contentView];
+    
+    [_myBoardView setParent:self];
+    
+    if(!_myBoardView){
+        NSLog(@"boardview issue");
+        //    [NSException raise:@"nil boardView" format:@""];
+    }
 }
+
+- (IBAction)openSGFPressed:(id)sender {
+    if  (!_myBoardView){
+        _myBoardView = [[[NSApplication sharedApplication] mainWindow] contentView];
+        [_myBoardView setParent:self];
+    }
+    if(!_myBoardView){
+        NSLog(@"boardview issue");
+        //    [NSException raise:@"nil boardView" format:@""];
+    }
+    NSURL *newsgf = [self.myBoardView promptOpenFile];
+    if (newsgf) {
+    [self startButtonClicked];
+    }
+//    [self.goParser setSgfFilePath:newsgf];
+    [self.goParser sgfFromURL:newsgf];
+
+    _indexClick=1;
+    _moves = [_goParser buildMovesList];
+}
+
 
 @end
