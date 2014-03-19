@@ -12,12 +12,16 @@
 #import "BoardMechanic.h"
 #import "SGFParser.h"
 
-@interface goAppDelegate : NSResponder <NSApplicationDelegate,NSWindowDelegate,NSTextInput,keyboardButtonDelegate>
+
+@interface goAppDelegate : NSResponder <NSApplicationDelegate,NSWindowDelegate,NSTextInput,boardViewDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSTextField *currentCoordinateText;
+
+- (IBAction)openSGFPressed:(id)sender;
+
 @property (nonatomic, retain) NSMutableArray *checkList;
 @property (nonatomic, assign) NSArray *playedMoves;
-@property (weak) IBOutlet NSTextField *currentCoordinateText;
 
 
 -(void)removeFromPMLocation:(int)loc ;
@@ -25,6 +29,7 @@
 
 @property (nonatomic, retain)BoardMechanic *captureMaker;
 @property (nonatomic, retain)SGFParser *goParser;
+@property (nonatomic, retain)BoardView *myBoardView;
 
 @property (nonatomic, retain)NSWindow *splashWindow;
 @property (nonatomic, retain)NSImageView *board;
@@ -46,5 +51,8 @@
 -(void)startButtonClicked;
 -(void)leftButtonClicked;
 -(void)endButtonClicked;
+
+#pragma mark - Category Classes
+-(void)promptOpenFile;
 
 @end
