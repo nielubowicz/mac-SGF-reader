@@ -115,7 +115,7 @@
         }
     }
     
-    //  NSLog(@"%@ \n\n\ncount %li",lines,(unsigned long)lines.count);
+      NSLog(@"%@ \n\n\ncount %li",lines,(unsigned long)lines.count);
 }
 
 
@@ -136,6 +136,7 @@
     [self parseSgfFile];
 }
 
+
 -(void)sgfFileToString:(NSString*)sgfName{
 
     NSArray *docDirs = NSSearchPathForDirectoriesInDomains(
@@ -146,8 +147,6 @@
     doc = [doc stringByAppendingPathComponent:@"sgf_files"];
     
     NSString *fullPath = [NSString stringWithFormat:@"%@/%@", doc,sgfName];
-    
-
 }
 
 

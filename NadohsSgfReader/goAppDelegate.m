@@ -424,7 +424,7 @@
 
 -(void)startSGFParser{
      _goParser = [[SGFParser alloc]init];
-    [_goParser sgfFileToString:@"test5.sgf"];
+    [_goParser sgfFileToString:@"test2.sgf"];
      _moves = [_goParser buildMovesList];
 }
 
@@ -448,7 +448,7 @@
     [_myBoardView setParent:self];
     
     if(!_myBoardView){
-        NSLog(@"boardview issue");
+    NSLog(@"boardview issue");
         //    [NSException raise:@"nil boardView" format:@""];
     }
 }
@@ -466,7 +466,6 @@
     if (newsgf) {
     [self startButtonClicked];
     }
-//    [self.goParser setSgfFilePath:newsgf];
     [self.goParser sgfFromURL:newsgf];
 
     _indexClick=1;
