@@ -73,14 +73,19 @@
         if (text) {
             [lines addObject:text];
             NSLog(@"%@",text);
-        }if (text.length >1) {
-            int num1= (int)[aplhaConvert indexOfObject:[[text substringWithRange:NSMakeRange(2, 1)] uppercaseString]];
+        }if (text.length >2) {
+            NSString *letter = [[text substringWithRange:NSMakeRange(2, 1)] uppercaseString];
+            NSLog(@"THE LETTER %@ FROM %@",letter,text);
+            int num1= (int)[aplhaConvert indexOfObject:letter];
             int num2= (int)[self alphaToNum:[[text substringWithRange:NSMakeRange(3, 1)] uppercaseString]];
             NSLog(@"%i %i %@ %@",num1,num2,[text substringWithRange:NSMakeRange(0, 1)],text);
             double retNum = num2*19+num1;//num1*num2;
             NSArray *retMove = [NSArray arrayWithObjects:[NSNumber numberWithDouble:retNum],
                                 [moveIn substringWithRange:NSMakeRange(0, 1)],
                                 nil];
+            if  ([[[text substringWithRange:NSMakeRange(0, 1)] uppercaseString] isEqualToString:@"C"]){
+                NSLog(@"COMMENT [[%@]]", text);
+            }
             
             [moveOuts addObject:retMove];
         }
@@ -147,7 +152,7 @@
     doc = [doc stringByAppendingPathComponent:@"sgf_files"];
     
     NSString *fullPath = [NSString stringWithFormat:@"%@/%@", doc,sgfName];
-}
+}//C[White continues with 'a' or 'b'.]
 
 
 

@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface MovePlayed : NSObject
-@property (nonatomic,assign)BOOL isBlack;
-@property (nonatomic,assign)int boardLocation;
-@property (nonatomic, assign)CGPoint position;
+@property (nonatomic, assign) BOOL isBlack;
+@property (nonatomic, assign) int  boardLocation;
+@property (nonatomic, assign) CGPoint position;
 
+@property (nonatomic, strong) NSArray  *LBpoints;
+@property (nonatomic, strong) NSString *comment;
 -(void)setBoardLocation:(int)boardLocation;
 
 @end

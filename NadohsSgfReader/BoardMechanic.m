@@ -168,6 +168,16 @@
     emptySpot = NO;
     NSLog(@"played move pos%@",NSStringFromPoint(firstStone.position));
     
+    
+    BOOL (^processStone)(skipDirection blockSkip)= ^BOOL(skipDirection blockSkip){
+        
+        
+        
+        return NO;
+    };
+    
+    
+    
     if (firstStone.boardLocation-19 > 0) {
         MovePlayed *testMove = [[MovePlayed alloc]init];
         [testMove setIsBlack:firstStone.isBlack];
@@ -182,6 +192,7 @@
             }
             
         }
+        
         if (found) {
             NSLog(@"test move pos%@",NSStringFromPoint(testMove.position));
             retDelQueue = [self checkStone:testMove inside:movesPlayed skip:skipNone];
@@ -206,17 +217,21 @@
                 [testMove setIsBlack:stone.isBlack];
                 found = YES;
             }
+            
         }
+        
         if (found) {
-        NSLog(@"test move pos%@",NSStringFromPoint(testMove.position));
-        retDelQueue = [self checkStone:testMove inside:movesPlayed skip:skipNone];
-        if (!emptySpot) {
-            [_stonesToDel addObjectsFromArray:retDelQueue];
-        }
+            NSLog(@"test move pos%@",NSStringFromPoint(testMove.position));
+            retDelQueue = [self checkStone:testMove inside:movesPlayed skip:skipNone];
+            
+            if (!emptySpot) {
+                [_stonesToDel addObjectsFromArray:retDelQueue];
+            }
         }
     }
     
     emptySpot = NO;
+    
     
     if (firstStone.boardLocation+1 < 361) {
         MovePlayed *testMove = [[MovePlayed alloc]init];
