@@ -129,6 +129,12 @@
     }
     newImage = [self scaleImage:newImage toFrame:frame];
     [[[self.window contentView] viewWithTag:index] setImage:newImage];
+    
+    NSString*comment = aMove.comment;
+    if (!comment) {
+        comment = @"";
+    }
+    [self.commentLabel setStringValue:comment];
 }
 
 
@@ -447,6 +453,7 @@
 
     _indexClick=1;
     _moves = [_goParser buildMovesList];
+ 
 }
 
 

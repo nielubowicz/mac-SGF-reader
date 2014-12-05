@@ -45,6 +45,9 @@
 
 @property (nonatomic, assign) BOOL processingMove;
 
+@property (unsafe_unretained) IBOutlet NSTextView *commentsBox;
+@property (weak) IBOutlet NSTextField *commentLabel;
+
 
 #pragma mark - keyPressActions
 -(void)rightButtonClicked;

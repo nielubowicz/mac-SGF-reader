@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NadohsSgfReader/goAppDelegate.m"
-            timestampString = "439464194.81664"
+            timestampString = "439465411.976774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "487"
-            endingLineNumber = "487"
+            startingLineNumber = "445"
+            endingLineNumber = "445"
             landmarkName = "-openSGFPressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NadohsSgfReader/goAppDelegate.m"
-            timestampString = "439464194.81664"
+            timestampString = "439465411.976774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "494"
-            endingLineNumber = "494"
+            startingLineNumber = "452"
+            endingLineNumber = "452"
             landmarkName = "-openSGFPressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NadohsSgfReader/SGFParser.m"
-            timestampString = "439463342.232146"
+            timestampString = "439465000.795978"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "-buildMovesList"
             landmarkType = "5">
          </BreakpointContent>
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NadohsSgfReader/SGFParser.m"
-            timestampString = "439463342.232146"
+            timestampString = "439465000.795978"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "-buildMovesList"
             landmarkType = "5">
          </BreakpointContent>
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NadohsSgfReader/SGFParser.m"
-            timestampString = "439463342.232146"
+            timestampString = "439465000.795978"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "-buildMovesList"
             landmarkType = "5">
          </BreakpointContent>
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NadohsSgfReader/SGFParser.m"
-            timestampString = "439464253.391403"
+            timestampString = "439465000.795978"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "-buildMovesList"
             landmarkType = "5">
          </BreakpointContent>

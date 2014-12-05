@@ -51,7 +51,7 @@
 -(int)alphaToNum:(NSString*)let{
     //  int retInt=0;
     for (int i =0;i<aplhaConvert.count;i++){
-        // NSLog(@"%@ \n%@", [aplhaConvert objectAtIndex:i],let);
+        // //NSLog(@"%@ \n%@", [aplhaConvert objectAtIndex:i],let);
         if ([[aplhaConvert objectAtIndex:i]isEqualTo:let]) {
             return i-1;
             break;
@@ -88,7 +88,7 @@
         }
     }
     
-      NSLog(@"%@ \n\n\ncount %li",lines,(unsigned long)lines.count);
+      //NSLog(@"%@ \n\n\ncount %li",lines,(unsigned long)lines.count);
 }
 
 
@@ -102,10 +102,10 @@
                                                       error:&error];
 //    self.masterSGFString = [self.masterSGFString substringFromIndex:8];
     if (error) {
-        NSLog(@"INPUT ERROR %@ \n ERROR : %@ \n PATH : %@", error.domain, error,[fullPath absoluteString]);
+        //NSLog(@"INPUT ERROR %@ \n ERROR : %@ \n PATH : %@", error.domain, error,[fullPath absoluteString]);
     }
     
-    NSLog(@"%@",self.masterSGFString);
+    //NSLog(@"%@",self.masterSGFString);
     [self parseSgfFile];
 }
 
@@ -138,7 +138,7 @@
     NSRange matchRange = [textCheckingResult rangeAtIndex:1];
     NSString *match    = [inputString substringWithRange:matchRange];
     
-    NSLog(@"Found string '%@'", match);
+    //NSLog(@"Found string '%@'", match);
     
     if (match.length<1) {
         return nil;
@@ -206,7 +206,7 @@
     return (NSArray*)moveOuts;
     
     
-    //    NSLog(@"%@",moves);
+    //    //NSLog(@"%@",moves);
 }
 
 
