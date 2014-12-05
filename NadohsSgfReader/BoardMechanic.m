@@ -39,7 +39,7 @@
 
 
 -(CGPoint)getCheckingPoint:(skipDirection)blockSkip
-                   ofStone:(MovePlayed*) lastStone{
+                   ofStone:(MoveEvent*) lastStone{
     int checkingX;
     int checkingY;
     
@@ -66,7 +66,7 @@
 
 
 
--(NSArray*)checkStone:(MovePlayed *)lastStone
+-(NSArray*)checkStone:(MoveEvent *)lastStone
                inside:(NSArray*)movesPlayed
                  skip:(skipDirection)skipDirec
 {
@@ -87,7 +87,7 @@
         }
         
         BOOL empty= YES;
-        for(MovePlayed *stone in movesPlayed)
+        for(MoveEvent *stone in movesPlayed)
         {
             
             if (CGPointEqualToPoint(stone.position, checking)){
@@ -159,7 +159,7 @@
 
 
 
--(NSSet*)checkForCapture:(MovePlayed *)firstStone inside:(NSArray*)movesPlayed
+-(NSSet*)checkForCapture:(MoveEvent *)firstStone inside:(NSArray*)movesPlayed
 {
     
     NSMutableArray *_stonesToDel= [[NSMutableArray alloc]init];
@@ -168,12 +168,22 @@
     emptySpot = NO;
     NSLog(@"played move pos%@",NSStringFromPoint(firstStone.position));
     
+    
+    BOOL (^processStone)(skipDirection blockSkip)= ^BOOL(skipDirection blockSkip){
+        
+        
+        
+        return NO;
+    };
+    
+    
+    
     if (firstStone.boardLocation-19 > 0) {
-        MovePlayed *testMove = [[MovePlayed alloc]init];
+        MoveEvent *testMove = [[MoveEvent alloc]init];
         [testMove setIsBlack:firstStone.isBlack];
         [testMove setBoardLocation:firstStone.boardLocation-19];
         BOOL found=NO;
-        for(MovePlayed *stone in movesPlayed)
+        for(MoveEvent *stone in movesPlayed)
         {
             
             if (CGPointEqualToPoint(stone.position, testMove.position)){
@@ -182,6 +192,7 @@
             }
             
         }
+        
         if (found) {
             NSLog(@"test move pos%@",NSStringFromPoint(testMove.position));
             retDelQueue = [self checkStone:testMove inside:movesPlayed skip:skipNone];
@@ -195,35 +206,39 @@
     emptySpot = NO;
     
     if (firstStone.boardLocation+19 < 361) {
-        MovePlayed *testMove = [[MovePlayed alloc]init];
+        MoveEvent *testMove = [[MoveEvent alloc]init];
         [testMove setIsBlack:firstStone.isBlack];
         [testMove setBoardLocation:firstStone.boardLocation+19];
         BOOL found=NO;
-        for(MovePlayed *stone in movesPlayed)
+        for(MoveEvent *stone in movesPlayed)
         {
             
             if (CGPointEqualToPoint(stone.position, testMove.position)){
                 [testMove setIsBlack:stone.isBlack];
                 found = YES;
             }
+            
         }
+        
         if (found) {
-        NSLog(@"test move pos%@",NSStringFromPoint(testMove.position));
-        retDelQueue = [self checkStone:testMove inside:movesPlayed skip:skipNone];
-        if (!emptySpot) {
-            [_stonesToDel addObjectsFromArray:retDelQueue];
-        }
+            NSLog(@"test move pos%@",NSStringFromPoint(testMove.position));
+            retDelQueue = [self checkStone:testMove inside:movesPlayed skip:skipNone];
+            
+            if (!emptySpot) {
+                [_stonesToDel addObjectsFromArray:retDelQueue];
+            }
         }
     }
     
     emptySpot = NO;
     
+    
     if (firstStone.boardLocation+1 < 361) {
-        MovePlayed *testMove = [[MovePlayed alloc]init];
+        MoveEvent *testMove = [[MoveEvent alloc]init];
         [testMove setIsBlack:firstStone.isBlack];
         [testMove setBoardLocation:firstStone.boardLocation+1];
         BOOL found=NO;
-        for(MovePlayed *stone in movesPlayed)
+        for(MoveEvent *stone in movesPlayed)
         {
             
             if (CGPointEqualToPoint(stone.position, testMove.position)){
@@ -243,11 +258,11 @@
     emptySpot = NO;
     
     if (firstStone.boardLocation-1 > 0) {
-        MovePlayed *testMove = [[MovePlayed alloc]init];
+        MoveEvent *testMove = [[MoveEvent alloc]init];
         [testMove setIsBlack:firstStone.isBlack];
         [testMove setBoardLocation:firstStone.boardLocation-1];
         BOOL found=NO;
-        for(MovePlayed *stone in movesPlayed)
+        for(MoveEvent *stone in movesPlayed)
         {
             
             if (CGPointEqualToPoint(stone.position, testMove.position)){

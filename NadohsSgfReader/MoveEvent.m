@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 NadohsInc. All rights reserved.
 //
 
-#import "MovePlayed.h"
+#import "MoveEvent.h"
 
-@implementation MovePlayed
+@implementation MoveEvent
 @synthesize boardLocation=_boardLocation;
 @synthesize position =_position;
 @synthesize isBlack=_isBlack;

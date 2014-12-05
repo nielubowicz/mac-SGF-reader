@@ -10,29 +10,29 @@
 	<string>NadohsSgfReader</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>AF7424F4-7ED8-4311-9C41-67128254A566</key>
+		<key>388D345B7AF30C6751E9C69F9DECE5B6BD092EB5</key>
 		<string>https://github.com/Nadohs/mac-SGF-reader.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>NadohsSgfReader.xcodeproj/project.xcworkspace</string>
+	<string>NadohsSgfReader.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>AF7424F4-7ED8-4311-9C41-67128254A566</key>
+		<key>388D345B7AF30C6751E9C69F9DECE5B6BD092EB5</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/Nadohs/mac-SGF-reader.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>AF7424F4-7ED8-4311-9C41-67128254A566</string>
+	<string>388D345B7AF30C6751E9C69F9DECE5B6BD092EB5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>AF7424F4-7ED8-4311-9C41-67128254A566</string>
+			<string>388D345B7AF30C6751E9C69F9DECE5B6BD092EB5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>mac-SGF-reader</string>
 		</dict>

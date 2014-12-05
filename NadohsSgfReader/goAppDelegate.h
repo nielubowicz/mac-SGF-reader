@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "BoardView.h"
-#import "MovePlayed.h"
+#import "MoveEvent.h"
 #import "BoardMechanic.h"
 #import "SGFParser.h"
 
@@ -44,6 +44,9 @@
 @property (nonatomic, retain)NSMutableDictionary *removalHistory;
 
 @property (nonatomic, assign) BOOL processingMove;
+
+@property (unsafe_unretained) IBOutlet NSTextView *commentsBox;
+@property (weak) IBOutlet NSTextField *commentLabel;
 
 
 #pragma mark - keyPressActions
