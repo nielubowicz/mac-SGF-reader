@@ -7,6 +7,7 @@
 //
 
 #import "SGFParser.h"
+#import "MoveEvent.h"
 
 @implementation SGFParser{
         NSMutableArray *lines;
@@ -59,47 +60,14 @@
     return 0;
 }
 
-#pragma mark - Moves From String
 
--(NSArray*)buildMovesList{
-    NSMutableArray *moveOuts =[[NSMutableArray alloc]init];
-    NSArray *linez = [NSArray arrayWithArray:lines];
-    for (NSString* moveIn in linez){
-        NSScanner* scanner = [NSScanner scannerWithString:moveIn];
-        // [scanner scanUpToString:@"]" intoString:nil];
-        [scanner scanString:@"[" intoString:nil];
-        NSString * text = nil;
-        [scanner scanUpToString:@"]" intoString:&text];
-        if (text) {
-            [lines addObject:text];
-            NSLog(@"%@",text);
-        }if (text.length >2) {
-            NSString *letter = [[text substringWithRange:NSMakeRange(2, 1)] uppercaseString];
-            NSLog(@"THE LETTER %@ FROM %@",letter,text);
-            int num1= (int)[aplhaConvert indexOfObject:letter];
-            int num2= (int)[self alphaToNum:[[text substringWithRange:NSMakeRange(3, 1)] uppercaseString]];
-            NSLog(@"%i %i %@ %@",num1,num2,[text substringWithRange:NSMakeRange(0, 1)],text);
-            double retNum = num2*19+num1;//num1*num2;
-            NSArray *retMove = [NSArray arrayWithObjects:[NSNumber numberWithDouble:retNum],
-                                [moveIn substringWithRange:NSMakeRange(0, 1)],
-                                nil];
-            if  ([[[text substringWithRange:NSMakeRange(0, 1)] uppercaseString] isEqualToString:@"C"]){
-                NSLog(@"COMMENT [[%@]]", text);
-            }
-            
-            [moveOuts addObject:retMove];
-        }
-        
-    }
-    return (NSArray*)moveOuts;
-//    NSLog(@"%@",moves);
-}
 
 
 
 -(void)parseSgfFile{
     
     NSScanner* scanner = [NSScanner scannerWithString:self.masterSGFString];
+    
     lines = [[NSMutableArray alloc] init];
     [scanner scanUpToString:@"(;" intoString:nil];
     
@@ -112,7 +80,7 @@
     
     while (![scanner isAtEnd]) {
         [scanner scanUpToString:@";" intoString:nil];
-        [scanner scanString:@";" intoString:nil];
+        [scanner     scanString:@";" intoString:nil];
         NSString *text = nil;
         [scanner scanUpToString:@";" intoString:&text];
         if (text) {
@@ -156,6 +124,105 @@
 
 
 
+-(NSString*)findPattern:(NSString*)pattern FromString:(NSString*)inputString{
+//    NSString *pattern = @"/maps/place/(.*?)/data";
+
+    
+    NSRegularExpression *regex = [NSRegularExpression
+                                  regularExpressionWithPattern : pattern
+                                  options : NSRegularExpressionCaseInsensitive
+                                  error : nil];
+    
+    NSTextCheckingResult *textCheckingResult = [regex firstMatchInString : inputString
+                                                                 options : 0
+                                                                   range : NSMakeRange(0, inputString.length)];
+    
+    NSRange matchRange = [textCheckingResult rangeAtIndex:1];
+    NSString *match    = [inputString substringWithRange:matchRange];
+    
+    NSLog(@"Found string '%@'", match);
+    
+    if (match.length<1) {
+        return nil;
+    }
+    
+    return match;
+
+//    NSArray *myArray = [regex matchesInString:inputString options:0 range:NSMakeRange(0, [inputString length])] ;
+//    
+//    NSMutableArray *matches = [NSMutableArray arrayWithCapacity:[myArray count]];
+//    
+//    for (NSTextCheckingResult *match in myArray) {
+//        NSRange matchRange = [match rangeAtIndex:1];
+//        [matches addObject:[input substringWithRange:matchRange]];
+//        NSLog(@"%@", [matches lastObject]);
+//    }
+    
+    return match;
+}
+
+
+
+#pragma mark - Moves From String
+
+-(NSArray*)buildMovesList{
+    
+    NSMutableArray *moveOuts =[[NSMutableArray alloc]init];
+    NSArray *linez = [NSArray arrayWithArray:lines];
+    
+    for (NSString* moveIn in linez){
+        
+        MoveEvent *aMove   = [[MoveEvent alloc]init];
+        NSString *moveInUp = [moveIn uppercaseString];
+        
+        int num1;
+        int num2;
+        
+        NSString*bStone = [self findPattern:@"^B\\[(.*?)\\]" FromString:moveInUp];
+        
+        if (bStone && bStone.length >=2) {
+             num1= (int)[aplhaConvert indexOfObject:[bStone substringWithRange:NSMakeRange(0, 1)]];
+             num2= (int)[self alphaToNum:[bStone substringWithRange:NSMakeRange(1, 1)]];
+        }
+        
+        NSString*wStone = [self findPattern:@"^W\\[(.*?)\\]" FromString:moveInUp];
+        
+        if (wStone && wStone.length >=2) {
+            num1= (int)[aplhaConvert indexOfObject:[wStone substringWithRange:NSMakeRange(0, 1)]];
+            num2= (int)[self alphaToNum:[wStone substringWithRange:NSMakeRange(1, 1)]];
+        }
+        
+
+        
+        double moveIndex = num2*19+num1;
+        [aMove setBoardLocation:moveIndex];
+        
+        if (bStone) {
+            [aMove setIsBlack:YES];
+            
+        }else if (wStone){
+            [aMove setIsBlack:NO];
+            
+        }else{
+            //NO STONE FOUND
+            continue;
+        }
+        
+        
+        NSString*comment = [self findPattern:@"C\\[(.*?)\\]" FromString:moveInUp];
+        if (comment) {
+            aMove.comment =comment;
+        }
+
+        [moveOuts addObject:aMove];
+    }
+    
+    return (NSArray*)moveOuts;
+    
+    
+    //    NSLog(@"%@",moves);
+}
+
 
 
 -(id)init{
@@ -164,5 +231,7 @@
     }
     return self;
 }
+
+
 
 @end

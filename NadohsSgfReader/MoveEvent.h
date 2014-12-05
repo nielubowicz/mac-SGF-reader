@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MovePlayed : NSObject
+@interface MoveEvent : NSObject
 @property (nonatomic, assign) BOOL isBlack;
 @property (nonatomic, assign) int  boardLocation;
 @property (nonatomic, assign) CGPoint position;

@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "BoardView.h"
-#import "MovePlayed.h"
+#import "MoveEvent.h"
 #import "BoardMechanic.h"
 #import "SGFParser.h"
 

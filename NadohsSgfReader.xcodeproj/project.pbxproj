@@ -13,7 +13,7 @@
 		52AC1F47189ED30900E8276E /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 52AC1F42189ED30900E8276E /* white.png */; };
 		52AC1F48189ED30900E8276E /* woodback.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 52AC1F43189ED30900E8276E /* woodback.jpg */; };
 		52AD3AC117C3BF2700E92C6A /* BoardMechanic.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD3AC017C3BF2700E92C6A /* BoardMechanic.m */; };
-		52AD3AC417C3CCF000E92C6A /* MovePlayed.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD3AC317C3CCF000E92C6A /* MovePlayed.m */; };
+		52AD3AC417C3CCF000E92C6A /* MoveEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD3AC317C3CCF000E92C6A /* MoveEvent.m */; };
 		52AD3AC717C4C95800E92C6A /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AD3AC617C4C95800E92C6A /* BoardView.m */; };
 		52B3AE8617BD376B00ECE58D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B3AE8517BD376B00ECE58D /* Cocoa.framework */; };
 		52B3AE9017BD376B00ECE58D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52B3AE8E17BD376B00ECE58D /* InfoPlist.strings */; };
@@ -38,8 +38,8 @@
 		52AC1F43189ED30900E8276E /* woodback.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = woodback.jpg; sourceTree = "<group>"; };
 		52AD3ABF17C3BF2700E92C6A /* BoardMechanic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardMechanic.h; sourceTree = "<group>"; };
 		52AD3AC017C3BF2700E92C6A /* BoardMechanic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardMechanic.m; sourceTree = "<group>"; };
-		52AD3AC217C3CCF000E92C6A /* MovePlayed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovePlayed.h; sourceTree = "<group>"; };
-		52AD3AC317C3CCF000E92C6A /* MovePlayed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovePlayed.m; sourceTree = "<group>"; };
+		52AD3AC217C3CCF000E92C6A /* MoveEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoveEvent.h; sourceTree = "<group>"; };
+		52AD3AC317C3CCF000E92C6A /* MoveEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveEvent.m; sourceTree = "<group>"; };
 		52AD3AC517C4C95800E92C6A /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		52AD3AC617C4C95800E92C6A /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		52B3AE8217BD376B00ECE58D /* NadohsSgfReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NadohsSgfReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,8 +134,8 @@
 				52AD3AC017C3BF2700E92C6A /* BoardMechanic.m */,
 				52D3D00F18AC311F0073F2F0 /* SGFParser.h */,
 				52D3D01018AC311F0073F2F0 /* SGFParser.m */,
-				52AD3AC217C3CCF000E92C6A /* MovePlayed.h */,
-				52AD3AC317C3CCF000E92C6A /* MovePlayed.m */,
+				52AD3AC217C3CCF000E92C6A /* MoveEvent.h */,
+				52AD3AC317C3CCF000E92C6A /* MoveEvent.m */,
 				52B3AE9717BD376B00ECE58D /* goAppDelegate.h */,
 				52B3AE9817BD376B00ECE58D /* goAppDelegate.m */,
 				52B3AE9A17BD376B00ECE58D /* MainMenu.xib */,
@@ -251,7 +251,7 @@
 				52B3AE9917BD376B00ECE58D /* goAppDelegate.m in Sources */,
 				52AD3AC117C3BF2700E92C6A /* BoardMechanic.m in Sources */,
 				52D3D01118AC311F0073F2F0 /* SGFParser.m in Sources */,
-				52AD3AC417C3CCF000E92C6A /* MovePlayed.m in Sources */,
+				52AD3AC417C3CCF000E92C6A /* MoveEvent.m in Sources */,
 				52AD3AC717C4C95800E92C6A /* BoardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

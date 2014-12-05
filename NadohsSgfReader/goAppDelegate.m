@@ -22,17 +22,17 @@
 
 #pragma mark - adding/removing stones
 
--(void)addToFromPlayedMove:(MovePlayed*)move {
+-(void)addToFromPlayedMove:(MoveEvent*)move {
     int loc = move.boardLocation;
     BOOL exists = NO;
-    for (MovePlayed *move in self.playedMoves){
+    for (MoveEvent *move in self.playedMoves){
         if   ([move boardLocation] == loc){
             [_myPlayedMoves addObject:move];
             exists=YES;
         }
     }
     if  (!exists){
-        MovePlayed *newMove = [[MovePlayed alloc]init];
+        MoveEvent *newMove = [[MoveEvent alloc]init];
         [newMove setBoardLocation:loc];
         [newMove setIsBlack:move.isBlack];
         [_myPlayedMoves addObject:newMove];
@@ -43,7 +43,7 @@
 
 -(void)removeFromPlayedMoveLocation:(int)loc {
     
-    for (MovePlayed *move in self.playedMoves){
+    for (MoveEvent *move in self.playedMoves){
         if   ([move boardLocation] == loc){
             [_myPlayedMoves removeObject:move];
         }
@@ -56,7 +56,7 @@
     int totalRevSets = (int)revive.count;
     for (int i = totalRevSets; i>_indexClick; i--) {
         NSArray *didRemove = [revive  objectForKey:[[NSNumber numberWithInt:i] stringValue]];
-        for (MovePlayed*move in didRemove){
+        for (MoveEvent*move in didRemove){
             NSImageView *viewItem = [[self.window contentView] viewWithTag:move.boardLocation];
             NSImage     *newImage;
             if ([move isBlack]) {
@@ -85,7 +85,7 @@
         NSLog(@"stones to remove found");
     }
     
-    for (MovePlayed*move in toRemove){
+    for (MoveEvent*move in toRemove){
         
         NSImageView *viewItem = [[self.window contentView] viewWithTag:move.boardLocation];
         
@@ -97,7 +97,7 @@
     }
 }
 
--(void)checkCapture:(MovePlayed*)myMove{
+-(void)checkCapture:(MoveEvent*)myMove{
     if (!_captureMaker){
         _captureMaker= [[BoardMechanic alloc]init];
     }
@@ -108,27 +108,27 @@
 
 
 -(void)showBoard{
-    for (int i=1; i<_moves.count;i++){
-        NSImage *newImage;
-        CGRect frame;
-        int index =  [[[_moves objectAtIndex:i] objectAtIndex:0] intValue];
-        NSLog(@"%i IS INDEX",index  );
-        frame = [[[self.window contentView] viewWithTag:index] frame];
-        
-        NSString *testColor = [(NSString*)[[_moves objectAtIndex:i] objectAtIndex:1] uppercaseString];
-        
-        if ([testColor isEqualToString:@"B"]) {
-            NSLog(@"black");
-            newImage = [NSImage imageNamed:@"black.png"];
-        }
-        else{
-            NSLog(@"white");
-            newImage = [NSImage imageNamed:@"white.png"];
-        }
-        
-        newImage = [self scaleImage:newImage toFrame:frame];
-        [[[self.window contentView] viewWithTag:index] setImage:newImage];
+    
+    for (MoveEvent *aMove in _moves) {
+        [self placeBoardStoneFromMove:aMove];
     }
+}
+
+
+-(void)placeBoardStoneFromMove:(MoveEvent*)aMove{
+    NSImage *newImage;
+    CGRect frame;
+    
+    int index = aMove.boardLocation;
+    frame = [[[self.window contentView] viewWithTag:index] frame];
+    
+    if(aMove.isBlack){
+        newImage = [NSImage imageNamed:@"black.png"];
+    }else{
+        newImage = [NSImage imageNamed:@"white.png"];
+    }
+    newImage = [self scaleImage:newImage toFrame:frame];
+    [[[self.window contentView] viewWithTag:index] setImage:newImage];
 }
 
 
@@ -145,40 +145,15 @@
     
 }
 
--(MovePlayed*)changeMoveIndexed:(int)indexClicked leftDirection:(BOOL)backward{
+-(MoveEvent*)changeMoveIndexed:(int)indexClicked leftDirection:(BOOL)backward{
     int i = _indexClick;
-    NSImage *newImage;
-    CGRect frame;
-    MovePlayed *myMovePlay = [[MovePlayed alloc]init ];
-    
-    int index =  [[[_moves objectAtIndex:i] objectAtIndex:0] intValue];
-    NSLog(@"%i IS INDEX",index );
-    
-    frame = [[[self.window contentView] viewWithTag:index] frame];
-    
-    NSString *testColor = [(NSString*)[[_moves objectAtIndex:i] objectAtIndex:1] uppercaseString];
-    
-    if ([testColor isEqualToString:@"B"]) {
-        NSLog(@"black");
-        newImage = [NSImage imageNamed:@"black.png"];
-        [myMovePlay setIsBlack:YES];
-    }
-    else{
-        NSLog(@"white");
-        newImage = [NSImage imageNamed:@"white.png"];
-        [myMovePlay setIsBlack:NO];
-    }
-    
-    if (backward) {
-        newImage = [NSImage imageNamed:@"empty2.png"];
-    }
-    
-    newImage = [self scaleImage:newImage toFrame:frame];
-    [[[self.window contentView] viewWithTag:index] setImage:newImage];
-    
-    [myMovePlay setBoardLocation:index];
+
+    MoveEvent *aMove = (MoveEvent*)[_moves objectAtIndex:i];
+
+    [self placeBoardStoneFromMove:aMove];
+
     [self reviveStones];
-    return myMovePlay;
+    return aMove;
 }
 
 -(void)rightButtonClicked{
@@ -189,7 +164,7 @@
     
     _processingMove = YES;
     
-    MovePlayed *myMovePlay = [self changeMoveIndexed:_indexClick leftDirection:NO];
+    MoveEvent *myMovePlay = [self changeMoveIndexed:_indexClick leftDirection:NO];
     
     //ADD TO MOVES PLAYED
     [_myPlayedMoves addObject:myMovePlay];
@@ -217,13 +192,15 @@
     if ((_indexClick-1) >0) {
         _indexClick--;
     }
-    MovePlayed *myMovePlay = [self changeMoveIndexed:_indexClick leftDirection:YES];
+    MoveEvent *myMovePlay = [self changeMoveIndexed:_indexClick leftDirection:YES];
     
     //REMOVE FROM MOVES PLAYED
     int q =0;
-    for (MovePlayed*movez in [self playedMoves]){
+    for (MoveEvent*movez in [self playedMoves]){
         if (movez.boardLocation == myMovePlay.boardLocation) {
             [_myPlayedMoves removeObjectAtIndex:q];
+
+            [[[self.window contentView] viewWithTag:movez.boardLocation] setImage:nil];
         }
         q++;
     }
@@ -471,6 +448,7 @@
     _indexClick=1;
     _moves = [_goParser buildMovesList];
 }
+
 
 
 @end
