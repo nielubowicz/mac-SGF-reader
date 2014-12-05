@@ -125,8 +125,6 @@
 
 
 -(NSString*)findPattern:(NSString*)pattern FromString:(NSString*)inputString{
-//    NSString *pattern = @"/maps/place/(.*?)/data";
-
     
     NSRegularExpression *regex = [NSRegularExpression
                                   regularExpressionWithPattern : pattern
@@ -145,18 +143,6 @@
     if (match.length<1) {
         return nil;
     }
-    
-    return match;
-
-//    NSArray *myArray = [regex matchesInString:inputString options:0 range:NSMakeRange(0, [inputString length])] ;
-//    
-//    NSMutableArray *matches = [NSMutableArray arrayWithCapacity:[myArray count]];
-//    
-//    for (NSTextCheckingResult *match in myArray) {
-//        NSRange matchRange = [match rangeAtIndex:1];
-//        [matches addObject:[input substringWithRange:matchRange]];
-//        NSLog(@"%@", [matches lastObject]);
-//    }
     
     return match;
 }
