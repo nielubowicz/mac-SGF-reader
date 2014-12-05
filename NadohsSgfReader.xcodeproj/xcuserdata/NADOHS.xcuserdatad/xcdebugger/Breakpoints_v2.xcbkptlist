@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NadohsSgfReader/goAppDelegate.m"
-            timestampString = "439465411.976774"
+            timestampString = "439467697.931437"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
-            landmarkName = "-openSGFPressed:"
+            startingLineNumber = "416"
+            endingLineNumber = "416"
+            landmarkName = "-setupKeyInputBlocks"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NadohsSgfReader/goAppDelegate.m"
-            timestampString = "439465411.976774"
+            timestampString = "439467697.931437"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
-            landmarkName = "-openSGFPressed:"
+            startingLineNumber = "423"
+            endingLineNumber = "423"
+            landmarkName = "-startSGFParser"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,6 +138,54 @@
             startingLineNumber = "200"
             endingLineNumber = "200"
             landmarkName = "-buildMovesList"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NadohsSgfReader/goAppDelegate.m"
+            timestampString = "439467168.518294"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "-addToFromPlayedMove:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NadohsSgfReader/goAppDelegate.m"
+            timestampString = "439467646.444371"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "-changeMoveIndexed:leftDirection:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NadohsSgfReader/goAppDelegate.m"
+            timestampString = "439467646.444371"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "-changeMoveIndexed:leftDirection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -157,7 +157,9 @@
 
 -(MoveEvent*)changeMoveIndexed:(int)indexClicked leftDirection:(BOOL)backward{
     int i = _indexClick;
-
+    if (_moves.count == 0 || !_moves) {
+        return nil;
+    }
 
     MoveEvent *aMove = (MoveEvent*)[_moves objectAtIndex:i];
 
@@ -178,6 +180,10 @@
     
     MoveEvent *myMovePlay = [self changeMoveIndexed:_indexClick leftDirection:NO];
     
+    if (!myMovePlay) {
+        _processingMove = NO;
+        return;
+    }
     //ADD TO MOVES PLAYED
     [_myPlayedMoves addObject:myMovePlay];
     
