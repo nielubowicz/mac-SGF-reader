@@ -22,7 +22,9 @@
 
 #pragma mark - adding/removing stones
 
+
 -(void)addToFromPlayedMove:(MoveEvent*)move {
+
     int loc = move.boardLocation;
     BOOL exists = NO;
     for (MoveEvent *move in self.playedMoves){
@@ -32,7 +34,9 @@
         }
     }
     if  (!exists){
+
         MoveEvent *newMove = [[MoveEvent alloc]init];
+
         [newMove setBoardLocation:loc];
         [newMove setIsBlack:move.isBlack];
         [_myPlayedMoves addObject:newMove];
@@ -154,9 +158,11 @@
 -(MoveEvent*)changeMoveIndexed:(int)indexClicked leftDirection:(BOOL)backward{
     int i = _indexClick;
 
+
     MoveEvent *aMove = (MoveEvent*)[_moves objectAtIndex:i];
 
     [self placeBoardStoneFromMove:aMove];
+
 
     [self reviveStones];
     return aMove;
