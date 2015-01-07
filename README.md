@@ -12,3 +12,4 @@ Currently there is no support for branches/trees
 ![ScreenShot](/mac_sgf_reader.png)
 
 mac SGF reader
+ Added a new *line!
